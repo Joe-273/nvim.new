@@ -30,8 +30,8 @@ local function todo_picker(opts)
 	opts.search = Config.search_regex(keywords_filter(opts.keywords))
 	opts.prompt_title = 'Find Todo'
 	opts.use_regex = true
+	opts.previewer = previewers.dyn_title_previewer_maker
 	local entry_maker = make_entry.gen_from_vimgrep(opts)
-	opts.previewer = previewers.dyn_title_previewer_make
 	opts.entry_maker = function(line)
 		local ret = entry_maker(line)
 		ret.display = function(entry)

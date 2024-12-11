@@ -86,4 +86,20 @@ require('noice').setup({
 	},
 })
 
+-- Set winfixbuf & statuscolumn & foldcolumn to the noice window
+vim.api.nvim_create_autocmd('BufWinEnter', {
+	group = vim.api.nvim_create_augroup('IrreplaceableWindows', { clear = true }),
+	pattern = '*',
+	callback = function()
+		local filetypes = { 'noice' }
+		local buftypes = { 'nofile' }
+		if vim.tbl_contains(buftypes, vim.bo.buftype) and vim.tbl_contains(filetypes, vim.bo.filetype) then
+			vim.cmd('set winfixbuf')
+			vim.cmd('setlocal statuscolumn=')
+			vim.opt_local.foldenable = false
+			vim.opt_local.foldcolumn = '0'
+		end
+	end,
+})
+
 utils.map('n', '<leader>n', toggle_noice, 'Toggle: [n]oice history', { noremap = true, silent = true })

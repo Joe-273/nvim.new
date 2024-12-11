@@ -1,5 +1,6 @@
--- TODO: 获取高亮组颜色
-local get_hlgroup_color = function(group, attr)
+local utils = require('kaiho.helper.utils')
+
+local function get_hlgroup_color(group, attr)
 	attr = attr or 'fg'
 	local ok, hl_group = pcall(vim.api.nvim_get_hl, 0, { name = group })
 	if not ok then
@@ -9,82 +10,65 @@ local get_hlgroup_color = function(group, attr)
 		)
 		return nil
 	end
-	return hl_group[attr]
-end
 
-local function to_hex_color(num)
-	return string.format('#%06X', num)
-end
-
-get_hlgroup_color()
-
-local hlcolor = {
-	Normal = {}, -- Normal text
-	NormalSB = {}, -- Normal text in non-current windows
-	NormalFloat = {}, -- Normal text in floating windows.
-	FloatBorder = {},
-	FloatTitle = {}, -- Title of floating windows
-	Pmenu = {}, -- Popup menu: normal item.
-	PmenuSel = {}, -- Popup menu: selected item.
-	PmenuSbar = {}, -- Popup menu: scrollbar.
-	PmenuThumb = {}, -- Popup menu: Thumb of the scrollbar.
-	TabLine = {}, -- tab pages line, not active tab page label
-	TabLineFill = {}, -- tab pages line, where there are no labels
-	TabLineSel = {}, -- tab pages line, active tab page label
-	StatusLine = {}, -- status line of current window
-	StatusLineNC = {}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-}
-
-local colors = {
-	Normal = {},
-	Comment = {}, -- just comments
-	Special = {}, -- special things inside a comment
-	Constant = {}, -- (preferred) any constant
-	String = {}, -- a string constant: "this is a string"
-	Character = {}, --  a character constant: 'c', '\n'
-	Number = {}, --   a number constant: 234, 0xff
-	Identifier = {}, -- (preferred) any variable name
-	Function = {}, -- function name (also: methods for classes)
-	Statement = {}, -- (preferred) any statement
-	Conditional = {}, --  if, then, else, endif, switch, etc.
-	Repeat = {}, --   for, do, while, etc.
-	Label = {}, --    case, default, etc.
-	Operator = {}, -- "sizeof", "+", "*", etc.
-	Keyword = {}, --  any other keyword
-	Exception = {}, --  try, catch, throw
-}
-
-local use = {
-	Statement = {},
-	String = {},
-	Special = {},
-	Constant = {},
-	Comment = {},
-	Function = {},
-	Operator = {},
-
-	Added = {},
-	Removed = {},
-	Changed = {},
-
-	DiagnosticError = {},
-	DiagnosticWarn = {},
-	DiagnosticInfo = {},
-	DiagnosticHint = {},
-
-	-- 注释斜体
-}
-
-for index, key in pairs(vim.tbl_keys(use)) do
-	local fg = get_hlgroup_color(key)
-	local bg = get_hlgroup_color(key, 'bg') or 'Null'
-	local ok, fgHex = pcall(to_hex_color, fg)
-	if not ok then
-		fgHex = 'null'
+	local color = hl_group[attr]
+	if color then
+		return string.format('#%06X', color)
 	end
-	local ok, bgHex = pcall(to_hex_color, bg)
-	if not ok then
-		bgHex = 'null'
-	end
-	print(key, '>>', fgHex, '>>', bgHex)
+	return nil
 end
+
+local colors_map = {
+	-- Use for main color
+	main_fg = { hl = 'Normal' },
+	main_bg = { hl = 'Normal', attr = 'bg' },
+	main_string = { hl = 'String' },
+	main_special = { hl = 'Special' },
+	main_comment = { hl = 'Comment' },
+	main_function = { hl = 'Function' },
+	main_operator = { hl = 'Operator' },
+	main_constant = { hl = 'Constant' },
+	main_statement = { hl = 'Statement' },
+
+	-- Use for git
+	git_add = { hl = { 'Added', 'GitSignsAdd' } },
+	git_delete = { hl = { 'Removed', 'GitSignsDelete' } },
+	git_change = { hl = { 'Changed', 'GitSignsChange' } },
+
+	-- Use for diagnostic
+	diagnostic_error = { hl = 'DiagnosticError' },
+	diagnostic_warn = { hl = 'DiagnosticWarn' },
+	diagnostic_info = { hl = 'DiagnosticInfo' },
+	diagnostic_hint = { hl = 'DiagnosticHint' },
+}
+
+local colors = {}
+-- Setup current colors and save to table: `colors`
+local function setup_colors()
+	local spare_hlgroup = 'Normal'
+
+	for key, hlgroups in pairs(colors_map) do
+		local hlgroup_tbl = hlgroups.hl
+		if type(hlgroup_tbl) ~= 'table' then
+			hlgroup_tbl = { hlgroup_tbl }
+		end
+
+		for _, hlgroup in ipairs(hlgroup_tbl) do
+			colors[key] = get_hlgroup_color(hlgroup, hlgroups.attr or 'fg')
+		end
+
+		if not colors[key] then
+			colors[key] = get_hlgroup_color(spare_hlgroup)
+		end
+	end
+
+	colors['main_light_fg'] = utils.lighten(colors['main_fg'], 0.6)
+	colors['main_light_bg'] = utils.lighten(colors['main_bg'], 0.6)
+	colors['main_dark_fg'] = utils.darken(colors['main_fg'], 0.6)
+	colors['main_dark_bg'] = utils.darken(colors['main_bg'], 0.6)
+end
+
+return {
+	colors = colors,
+	init_colors = setup_colors,
+}

@@ -15,9 +15,9 @@ local linters = {}
 
 local ensure_installed = vim.list_extend(vim.list_extend({}, lsps), formatters)
 ensure_installed = vim.list_extend(ensure_installed, linters)
-
 require('mason-tool-installer').setup({
 	ensure_installed = ensure_installed,
+	run_on_start = false,
 })
 
 local function get_lsp_config()
@@ -32,4 +32,4 @@ local function get_lsp_config()
 	return lsps_tb
 end
 
-return get_lsp_config
+return get_lsp_config()
