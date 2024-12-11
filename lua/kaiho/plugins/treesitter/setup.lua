@@ -15,6 +15,7 @@ local ensure_installed = {
 	'bash',
 	'python',
 	'toml',
+	'gitignore',
 
 	'javascript',
 	'typescript',
