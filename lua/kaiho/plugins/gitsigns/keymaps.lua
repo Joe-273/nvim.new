@@ -21,6 +21,8 @@ group_map('Hunk', {
 	{ 'n', '<leader>hu', gitsigns.undo_stage_hunk, '[u]ndo stage hunk', opts },
 	{ 'n', '<leader>hp', gitsigns.preview_hunk, '[p]review hunk', opts },
 	{ 'n', '<leader>hb', gitsigns.blame_line, '[b]lame line', opts },
+	{ 'n', '[h', gitsigns.preview_hunk, 'previous [h]unk', opts },
+	{ 'n', ']h', gitsigns.nav_hunk, 'next [h]unk', opts },
 })
 
 local git_diff_last_commit = build_func(gitsigns.diffthis, '@')

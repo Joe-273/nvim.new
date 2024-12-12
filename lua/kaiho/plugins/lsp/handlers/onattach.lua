@@ -13,6 +13,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			{ 'n', 'gI', Pickers.lsp_implementations, '[I]mplementation', opts }, -- Implementation
 			{ 'n', 'gD', vim.lsp.buf.declaration, '[D]eclaration', opts }, -- Declaration.
 			{ 'n', 'gt', Pickers.lsp_type_definitions, '[t]ype Definition', opts }, -- Type definition
+			{ 'n', '[d', vim.diagnostic.goto_prev, 'previous [d]iagnostic', opts }, -- Previous diagnostic
+			{ 'n', ']d', vim.diagnostic.goto_next, 'next [d]iagnostic', opts }, -- Next diagnostic
 		})
 		group_map('LSP', {
 			{ 'n', '<leader>lf', vim.lsp.buf.format, '[f]ormat', opts }, -- Format
@@ -56,7 +58,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		local toggle_inlay_hint =
 			utils.build_func(vim.lsp.inlay_hint.enable, (not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })))
 		if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-			utils.map('n', '<leader>th', toggle_inlay_hint, 'Toggle: inlay [h]ints')
+			utils.map('n', '<leader>th', toggle_inlay_hint, 'Lsp Toggle: inlay [h]ints')
 		end
 	end,
 })

@@ -1,0 +1,21 @@
+---@class Colors
+---@field main_fg string
+---@field main_bg string
+---@field main_dark_fg string
+---@field main_dark_bg string
+---@field main_light_fg string
+---@field main_light_bg string
+---@field main_comment string
+---@field main_constant string
+---@field main_function string
+---@field main_operator string
+---@field main_special string
+---@field main_statement string
+---@field main_string string
+---@field git_add string
+---@field git_change string
+---@field git_delete string
+---@field diagnostic_error string
+---@field diagnostic_hint string
+---@field diagnostic_info string
+---@field diagnostic_warn string

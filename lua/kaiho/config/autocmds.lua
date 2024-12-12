@@ -14,3 +14,11 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 		vim.cmd('silent! normal! g`"zv')
 	end,
 })
+
+-- Fix colors when switching themes
+vim.api.nvim_create_autocmd({ 'ColorScheme', 'VimEnter' }, {
+	group = vim.api.nvim_create_augroup('SetupColor', { clear = true }),
+	callback = function()
+		require('kaiho.helper.colors').setup_colors()
+	end,
+})

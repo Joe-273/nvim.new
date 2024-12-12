@@ -1,5 +1,9 @@
 return {
 	'rebelot/heirline.nvim',
 	event = 'VeryLazy',
-	opts = {},
+	config = function()
+		require('heirline').setup({
+			statusline = require('kaiho.plugins.heirline.statusline'),
+		})
+	end,
 }
