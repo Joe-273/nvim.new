@@ -132,3 +132,55 @@ for index, key in pairs(vim.tbl_keys(hlcolor)) do
 	print(key, '|', bg, '>>', lighter(bg, 0.5))
 	print('>>>>>>>>>>')
 end
+
+-- local colors_map = {
+-- 	main_fg = { hl = { 'Normal' } },
+-- 	main_bg = { hl = { 'Normal' }, attr = 'bg' },
+--
+-- 	-- Other
+-- 	main_string = { hl = { 'String' } },
+-- 	main_special = { hl = { 'Special' } },
+-- 	main_comment = { hl = { 'Comment' } },
+-- 	main_function = { hl = { 'Function' } },
+-- 	main_operator = { hl = { 'Operator' } },
+-- 	main_constant = { hl = { 'Constant' } },
+-- 	main_statement = { hl = { 'Statement' } },
+--
+-- 	-- Use for git
+-- 	git_add = { hl = { 'GitSignsAdd', 'Added' } },
+-- 	git_delete = { hl = { 'GitSignsDelete', 'Removed' } },
+-- 	git_change = { hl = { 'GitSignsChange', 'Changed' } },
+--
+-- 	-- Use for diagnostic
+-- 	diagnostic_error = { hl = { 'DiagnosticError' } },
+-- 	diagnostic_warn = { hl = { 'DiagnosticWarn' } },
+-- 	diagnostic_info = { hl = { 'DiagnosticInfo' } },
+-- 	diagnostic_hint = { hl = { 'DiagnosticHint' } },
+-- }
+-- local function get_colors()
+-- 	local colors = {}
+-- 	for key, colors_data in pairs(colors_map) do
+-- 		local attr = colors_data.attr or 'fg'
+--
+-- 		local hl_groups = colors_data.hl
+-- 		if type(hl_groups) ~= 'table' then
+-- 			hl_groups = { hl_groups }
+-- 		end
+--
+-- 		for _, hl_group in pairs(hl_groups) do
+-- 			colors[key] = get_color(hl_group, attr)
+-- 		end
+--
+-- 		if not colors[key] then
+-- 			colors[key] = attr == 'fg' and def_fg or def_bg
+-- 		end
+-- 	end
+--
+-- 	-- Extra colors
+-- 	colors.main_light_fg = utils.lighten(colors.main_fg, 0.8, def_fg)
+-- 	colors.main_light_bg = utils.lighten(colors.main_bg, 0.8, def_fg)
+-- 	colors.main_dark_fg = utils.darken(colors.main_fg, 0.8, def_bg)
+-- 	colors.main_dark_bg = utils.darken(colors.main_bg, 0.8, def_bg)
+--
+-- 	return colors
+-- end
