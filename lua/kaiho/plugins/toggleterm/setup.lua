@@ -22,7 +22,7 @@ require('toggleterm').setup({
 	winblend = 0,
 	highlights = {
 		WinSeparator = {
-			link = 'FloatBorder',
+			link = 'WinSeparator',
 		},
 	},
 })
@@ -46,9 +46,10 @@ local lazygit = Terminal:new({
 	float_opts = {
 		border = 'rounded',
 	},
+	-- TODO: 高亮组需要调整
 	highlights = {
 		Normal = {
-			link = 'Normal',
+			link = 'NormalNC',
 		},
 		NormalFloat = {
 			link = 'NormalFloat',
@@ -56,9 +57,9 @@ local lazygit = Terminal:new({
 	},
 	-- function to run on opening the terminal
 	on_open = function(term)
-		local opts = { noremap = true, silent = true, buffer = term.bufnr }
+		local cur_opts = { noremap = true, silent = true, buffer = term.bufnr }
 		vim.cmd('startinsert!')
-		utils.map('n', 'q', '<cmd>close<CR>', 'quit lazygit', opts)
+		utils.map('n', 'q', '<cmd>close<CR>', 'quit lazygit', cur_opts)
 	end,
 	-- function to run on closing the terminal
 	on_close = function()

@@ -29,10 +29,10 @@ local colors_map = {
 	diagnostic_hint = { hl = 'DiagnosticHint' },
 
 	-- Extra base
-	main_dark_fg = { base = 'main_fg', meta = 'darken:0.8' },
-	main_dark_bg = { base = 'main_bg', meta = 'darken:0.8' },
-	main_light_fg = { base = 'main_fg', meta = 'lighten:0.8' },
-	main_light_bg = { base = 'main_bg', meta = 'lighten:0.8' },
+	main_dark_fg = { base = 'main_fg', meta = 'darken:0.85' },
+	main_dark_bg = { base = 'main_bg', meta = 'darken:0.85' },
+	main_light_fg = { base = 'main_fg', meta = 'lighten:0.85' },
+	main_light_bg = { base = 'main_bg', meta = 'lighten:0.85' },
 }
 
 -- Get color by highlight group

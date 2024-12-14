@@ -16,8 +16,10 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 -- Fix colors when switching themes
+local hl = require('kaiho.helper.highlight')
 vim.api.nvim_create_autocmd({ 'ColorScheme', 'VimEnter' }, {
 	callback = function()
+		hl.setup_hlgroup()
 		require('lazy').reload({ plugins = { 'heirline.nvim' } })
 	end,
 })

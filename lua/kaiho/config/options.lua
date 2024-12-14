@@ -70,6 +70,6 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Only one statusline
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 
 vim.opt.shortmess:append('C')

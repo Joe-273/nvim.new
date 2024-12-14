@@ -9,8 +9,10 @@ local edge_char = icons.edge_char
 
 local function tabline_creator()
 	local C = colors.get_colors()
-	local bg = C.main_bg
+
+	local bg = C.main_dark_bg
 	local fg = C.main_dark_fg
+
 	local active_colors = {
 		fg = C.main_light_fg,
 		bg = function()
@@ -150,41 +152,15 @@ local function tabline_creator()
 			hl = { fg = C.main_constant },
 		},
 	}
-	local BufferBlock_Part = {
-		{
-			provider = edge_char.left,
-			hl = function(self)
-				local dyn_bg = self.is_active and active_colors.bg() or inactive_colors.bg
-				return {
-					fg = dyn_bg,
-					bg = C.main_dark_bg,
-				}
-			end,
-		},
+	local BufferBlock_Part = heirline_utils.surround({ edge_char.left, edge_char.right }, function(self)
+		return self.is_active and active_colors.bg() or inactive_colors.bg
+	end, {
 		public.spacer_creator(),
 		BufferIconAndName_Part,
 		public.spacer_creator(),
 		BufferFlag_Part,
 		public.spacer_creator(),
-		{
-			provider = edge_char.right,
-			hl = function(self)
-				local dyn_bg = self.is_active and active_colors.bg() or inactive_colors.bg
-				return {
-					fg = dyn_bg,
-					bg = C.main_dark_bg,
-				}
-			end,
-		},
-		hl = function(self)
-			local dyn_fg = self.is_active and active_colors.fg or inactive_colors.fg
-			local dyn_bg = self.is_active and active_colors.bg() or inactive_colors.bg
-			return {
-				fg = dyn_fg,
-				bg = dyn_bg,
-			}
-		end,
-	}
+	})
 
 	local TabLineOffset = {
 		condition = function(self)
@@ -193,8 +169,8 @@ local function tabline_creator()
 			self.winid = win
 
 			if vim.bo[bufnr].filetype == 'neo-tree' then
-				self.title = '[NEO-TREE]'
-				self.hl = { fg = fg, bg = C.main_dark_bg }
+				self.title = 'Explore'
+				self.hl = { fg = fg, bg = C.main_dark_bg, bold = true }
 				return true
 			end
 		end,
@@ -204,13 +180,10 @@ local function tabline_creator()
 				local title = self.title
 				local width = vim.api.nvim_win_get_width(self.winid)
 				local pad = math.ceil((width - #title) / 2)
-				return string.rep(' ', pad - 1) .. title .. string.rep(' ', pad)
+				return string.rep(' ', pad) .. title .. string.rep(' ', pad)
 			end,
 		},
-		-- TODO: 这里的分割符号，考虑是否需要
-		{
-			provider = '│',
-		},
+		public.spacer_creator(),
 	}
 	vim.keymap.set('n', 'bp', function()
 		local tabline = require('heirline').tabline
@@ -230,7 +203,10 @@ local function tabline_creator()
 	return {
 		TabLineOffset,
 		heirline_utils.make_buflist(
-			BufferBlock_Part,
+			{
+				public.spacer_creator(),
+				BufferBlock_Part,
+			},
 			-- TODO: 左右箭头是否太单薄？是否需要使用 edge_char 包裹？
 			{ provider = '', hl = { fg = fg, bg = bg } },
 			{ provider = '', hl = { fg = fg, bg = bg } }
