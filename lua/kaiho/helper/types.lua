@@ -19,3 +19,6 @@
 ---@field diagnostic_hint string
 ---@field diagnostic_info string
 ---@field diagnostic_warn string
+
+---@alias CptFlavor "mocha" | "macchiato" | "frappe" | "latte"
+---@alias TknFlavor "storm" | "night" | "moon" | "day"

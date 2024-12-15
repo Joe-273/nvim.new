@@ -1,42 +1,6 @@
 local utils = require('kaiho.helper.utils')
 
-local def_fg = '#eeeeee'
-local def_bg = '#111111'
-
-local colors_map = {
-	-- Base
-	main_fg = { hl = 'Normal' },
-	main_bg = { hl = 'Normal:bg' },
-
-	-- Other
-	main_string = { hl = 'String' },
-	main_special = { hl = 'Special' },
-	main_comment = { hl = 'Comment' },
-	main_function = { hl = 'Function' },
-	main_operator = { hl = 'Operator' },
-	main_constant = { hl = 'Constant' },
-	main_statement = { hl = 'Statement' },
-
-	-- Git
-	git_add = { hl = { 'GitSignsAdd', 'Added' } },
-	git_delete = { hl = { 'GitSignsDelete', 'Removed' } },
-	git_change = { hl = { 'GitSignsChange', 'Changed' } },
-
-	-- Diagnostic
-	diagnostic_error = { hl = 'DiagnosticError' },
-	diagnostic_warn = { hl = 'DiagnosticWarn' },
-	diagnostic_info = { hl = 'DiagnosticInfo' },
-	diagnostic_hint = { hl = 'DiagnosticHint' },
-
-	-- Extra base
-	main_dark_fg = { base = 'main_fg', meta = 'darken:0.85' },
-	main_dark_bg = { base = 'main_bg', meta = 'darken:0.85' },
-	main_light_fg = { base = 'main_fg', meta = 'lighten:0.85' },
-	main_light_bg = { base = 'main_bg', meta = 'lighten:0.85' },
-}
-
--- Get color by highlight group
-local function get_color(group, attr)
+local function get_color_by_hlgroup(group, attr)
 	attr = attr or 'fg'
 	local ok, hl_group = pcall(vim.api.nvim_get_hl, 0, { name = group })
 	if not ok then
@@ -52,6 +16,40 @@ local function get_color(group, attr)
 		return string.lower(string.format('#%06X', color))
 	end
 end
+
+local def_fg = '#eeeeee'
+local def_bg = '#111111'
+local colors_map = {
+	-- Base
+	main_fg = { hl = 'Normal' },
+	main_bg = { hl = 'Normal:bg' },
+
+	-- Other
+	main_string = { hl = 'String' },
+	main_special = { hl = 'Special' },
+	main_comment = { hl = 'Comment' },
+	main_function = { hl = 'Function' },
+	main_operator = { hl = 'Operator' },
+	main_constant = { hl = 'Constant' },
+	main_statement = { hl = 'Statement' },
+
+	-- Git
+	git_add = { hl = { 'Added', 'GitSignsAdd' } },
+	git_delete = { hl = { 'Removed', 'GitSignsDelete' } },
+	git_change = { hl = { 'Changed', 'GitSignsChange' } },
+
+	-- Diagnostic
+	diagnostic_error = { hl = 'DiagnosticError' },
+	diagnostic_warn = { hl = 'DiagnosticWarn' },
+	diagnostic_info = { hl = 'DiagnosticInfo' },
+	diagnostic_hint = { hl = 'DiagnosticHint' },
+
+	-- Extra base
+	main_dark_fg = { base = 'main_fg', meta = 'darken:0.85' },
+	main_dark_bg = { base = 'main_bg', meta = 'darken:0.85' },
+	main_light_fg = { base = 'main_fg', meta = 'lighten:0.85' },
+	main_light_bg = { base = 'main_bg', meta = 'lighten:0.85' },
+}
 
 -- Get all colors in colors_map
 ---@return Colors
@@ -89,7 +87,7 @@ local function get_colors()
 			for _, group_str in pairs(hl) do
 				local group, attr = group_str:match('([^:]+):?(.*)')
 				attr = attr ~= '' and attr or 'fg'
-				local color = get_color(group, attr)
+				local color = get_color_by_hlgroup(group, attr)
 				if not color then
 					color = attr == 'fg' and def_fg or def_bg
 				end

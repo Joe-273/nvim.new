@@ -1,9 +1,10 @@
+-- TODO: 设置主题配置
 return {
 	{
 		'folke/tokyonight.nvim',
 		priority = 1000,
 		config = function()
-			-- vim.cmd.colorscheme('tokyonight')
+			vim.cmd.colorscheme('tokyonight')
 		end,
 	},
 	{
@@ -11,7 +12,7 @@ return {
 		priority = 1000,
 		name = 'catppuccin',
 		config = function()
-			vim.cmd.colorscheme('catppuccin-frappe')
+			-- vim.cmd.colorscheme('catppuccin-macchiato')
 		end,
 	},
 }

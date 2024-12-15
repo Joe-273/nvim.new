@@ -21,9 +21,9 @@ require('toggleterm').setup({
 	shell = set_shell,
 	winblend = 0,
 	highlights = {
-		WinSeparator = {
-			link = 'WinSeparator',
-		},
+		WinSeparator = { link = 'WinSeparator' },
+		StatusLine = { link = 'StatusLine' },
+		StatusLineNC = { link = 'StatusLineNC' },
 	},
 })
 
@@ -46,14 +46,9 @@ local lazygit = Terminal:new({
 	float_opts = {
 		border = 'rounded',
 	},
-	-- TODO: 高亮组需要调整
 	highlights = {
-		Normal = {
-			link = 'NormalNC',
-		},
-		NormalFloat = {
-			link = 'NormalFloat',
-		},
+		NormalFloat = { link = 'NormalFloat' },
+		FloatBorder = { link = 'FloatBorder' },
 	},
 	-- function to run on opening the terminal
 	on_open = function(term)
@@ -71,4 +66,4 @@ local function _lazygit_toggle()
 	lazygit:toggle()
 end
 
-utils.map('n', '<leader>gl', _lazygit_toggle, 'Git: toggle [l]azygit', opts)
+utils.map('n', '<leader>gl', _lazygit_toggle, 'Git: open [l]azygit', opts)

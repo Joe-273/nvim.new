@@ -9,6 +9,8 @@ local build_func = utils.build_func
 local arg = { vim.fn.line('.'), vim.fn.line('v') }
 local stage_choose_hunk = build_func(gitsigns.stage_hunk, arg)
 local reset_choose_hunk = build_func(gitsigns.reset_hunk, arg)
+local prev_hunk = build_func(gitsigns.nav_hunk, 'prev')
+local next_hunk = build_func(gitsigns.nav_hunk, 'next')
 group_map('Hunk', {
 	-- visual mode
 	{ 'v', '<leader>hs', stage_choose_hunk, '[s]tage hunk', opts },
@@ -21,8 +23,8 @@ group_map('Hunk', {
 	{ 'n', '<leader>hu', gitsigns.undo_stage_hunk, '[u]ndo stage hunk', opts },
 	{ 'n', '<leader>hp', gitsigns.preview_hunk, '[p]review hunk', opts },
 	{ 'n', '<leader>hb', gitsigns.blame_line, '[b]lame line', opts },
-	{ 'n', '[h', gitsigns.preview_hunk, 'previous [h]unk', opts },
-	{ 'n', ']h', gitsigns.nav_hunk, 'next [h]unk', opts },
+	{ 'n', '[h', prev_hunk, 'previous [h]unk', opts },
+	{ 'n', ']h', next_hunk, 'next [h]unk', opts },
 })
 
 local git_diff_last_commit = build_func(gitsigns.diffthis, '@')

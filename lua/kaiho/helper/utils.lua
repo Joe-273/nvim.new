@@ -32,7 +32,7 @@ end
 local function build_func(func, ...)
 	local args = { ... }
 	return function()
-		func(unpack(args))
+		return func(unpack(args))
 	end
 end
 

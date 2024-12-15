@@ -102,6 +102,7 @@ function M.filename_creator()
 		provider = function(self)
 			local filename = vim.fn.fnamemodify(self.__filename, ':t')
 			-- NOTE: For personal situations only
+			-- ::Pwsh #Zsh
 			local term_id = filename:match('::toggleterm::(%d+)$') or filename:match('#toggleterm#(%d+)$')
 
 			if filename == '' then

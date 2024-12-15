@@ -13,17 +13,10 @@ local function statusline_creator()
 	local structure = structure_creator()
 
 	return {
-		structure.left_structure(
-			{
-				condition = conditions.is_active,
-				comps.Vimode,
-			},
-			comps.BufferName,
-			{
-				condition = conditions.is_active,
-				comps.Git,
-			}
-		),
+		structure.left_structure(comps.Vimode, comps.BufferName, {
+			condition = conditions.is_active,
+			comps.Git,
+		}),
 		{
 			condition = conditions.is_active,
 			comps.Diagnostics,
@@ -43,7 +36,10 @@ local function statusline_creator()
 			hl = { fg = C.main_function },
 		},
 		{
-			condition = conditions.is_active,
+			condition = function()
+				return conditions.is_active()
+					and not conditions.buffer_matches({ filetype = { 'neo-tree' }, buftype = { 'nofile' } })
+			end,
 			structure.right_structure(comps.Ruler, {}, comps.Ts),
 		},
 		hl = { fg = fg, bg = bg },

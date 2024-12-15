@@ -1,5 +1,3 @@
--- NOTE: 用于测试的模块
-
 local function to_hex_color(num)
 	return string.format('#%06X', num)
 end

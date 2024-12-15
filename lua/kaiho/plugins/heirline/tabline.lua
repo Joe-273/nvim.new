@@ -55,7 +55,6 @@ local function tabline_creator()
 		end,
 	})
 
-	-- TODO: 调整显示的颜色
 	local TablinePicker = {
 		condition = function(self)
 			return self._show_picker
@@ -78,10 +77,27 @@ local function tabline_creator()
 		provider = function(self)
 			return self.label .. ' '
 		end,
-		hl = { fg = 'red', bold = true },
+		hl = { fg = C.main_statement, bold = true },
 	}
 
-	local BufferIconAndName_Part = {
+	local function pick_buffer()
+		local tabline = require('heirline').tabline
+		---@diagnostic disable-next-line: undefined-field
+		local buflist = tabline._buflist[1]
+		buflist._picker_labels = {}
+		buflist._show_picker = true
+		vim.cmd.redrawtabline()
+		local char = vim.fn.getcharstr()
+		local bufnr = buflist._picker_labels[char]
+		if bufnr then
+			vim.api.nvim_win_set_buf(0, bufnr)
+		end
+		buflist._show_picker = false
+		vim.cmd.redrawtabline()
+	end
+	utils.map('n', '<leader>pw', pick_buffer, 'pick [w]inbar buffer', { noremap = true, silent = true })
+
+	local BufferIconAndName = {
 		init = function(self)
 			local bufnr = self.bufnr and self.bufnr or 0
 			self.filename = vim.api.nvim_buf_get_name(bufnr)
@@ -117,12 +133,12 @@ local function tabline_creator()
 		},
 	}
 
-	local BufferFlag_Part = {
+	local BufferFlag = {
 		{
 			condition = function(self)
 				return not vim.api.nvim_get_option_value('modified', { buf = self.bufnr })
 			end,
-			provider = '',
+			provider = '  ',
 			on_click = {
 				callback = function(_, minwid)
 					vim.schedule(function()
@@ -140,7 +156,7 @@ local function tabline_creator()
 			condition = function(self)
 				return vim.api.nvim_get_option_value('modified', { buf = self.bufnr })
 			end,
-			provider = '',
+			provider = '  ',
 			hl = { fg = C.main_string },
 		},
 		{
@@ -148,18 +164,16 @@ local function tabline_creator()
 				return not vim.api.nvim_get_option_value('modifiable', { buf = self.bufnr })
 					or vim.api.nvim_get_option_value('readonly', { buf = self.bufnr })
 			end,
-			provider = '',
+			provider = '  ',
 			hl = { fg = C.main_constant },
 		},
 	}
-	local BufferBlock_Part = heirline_utils.surround({ edge_char.left, edge_char.right }, function(self)
+	local BufferBlock = heirline_utils.surround({ edge_char.left, edge_char.right }, function(self)
 		return self.is_active and active_colors.bg() or inactive_colors.bg
 	end, {
 		public.spacer_creator(),
-		BufferIconAndName_Part,
-		public.spacer_creator(),
-		BufferFlag_Part,
-		public.spacer_creator(),
+		BufferIconAndName,
+		BufferFlag,
 	})
 
 	local TabLineOffset = {
@@ -185,32 +199,19 @@ local function tabline_creator()
 		},
 		public.spacer_creator(),
 	}
-	vim.keymap.set('n', 'bp', function()
-		local tabline = require('heirline').tabline
-		---@diagnostic disable-next-line: undefined-field
-		local buflist = tabline._buflist[1]
-		buflist._picker_labels = {}
-		buflist._show_picker = true
-		vim.cmd.redrawtabline()
-		local char = vim.fn.getcharstr()
-		local bufnr = buflist._picker_labels[char]
-		if bufnr then
-			vim.api.nvim_win_set_buf(0, bufnr)
-		end
-		buflist._show_picker = false
-		vim.cmd.redrawtabline()
-	end)
+
 	return {
 		TabLineOffset,
-		heirline_utils.make_buflist(
-			{
-				public.spacer_creator(),
-				BufferBlock_Part,
-			},
-			-- TODO: 左右箭头是否太单薄？是否需要使用 edge_char 包裹？
-			{ provider = '', hl = { fg = fg, bg = bg } },
-			{ provider = '', hl = { fg = fg, bg = bg } }
-		),
+		heirline_utils.make_buflist({
+			public.spacer_creator(),
+			BufferBlock,
+			hl = function(self)
+				return { fg = self.is_active and C.main_fg or fg }
+			end,
+		}, { provider = ' ', hl = { fg = fg, bg = C.main_bg } }, {
+			provider = ' ',
+			hl = { fg = fg, bg = C.main_bg },
+		}),
 	}
 end
 

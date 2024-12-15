@@ -16,8 +16,8 @@ local outline_document_symbol =
 	'<CMD>Trouble lsp_document_symbols toggle pinned=true win={relative=win,position=right,size=35}<CR>'
 local outline_buffer_diagnostics = '<CMD>Trouble diagnostics toggle win={size=20} filter.buf=0<CR>'
 local outline_workspace_diagnostics = '<cmd>Trouble workspace_diagnostics  toggle focus=true win={size=20}<CR>'
-group_map('Trouble', {
-	{ 'n', '<leader>os', outline_document_symbol, 'document [s]ymbol', opts },
+group_map('Outline', {
+	{ 'n', '<leader>os', outline_document_symbol, 'document [s]ymbols', opts },
 	{ 'n', '<leader>od', outline_buffer_diagnostics, 'buffer [d]iagnostics', opts },
 	{ 'n', '<leader>oD', outline_workspace_diagnostics, 'workspace [D]iagnostics', opts },
 })
@@ -40,13 +40,13 @@ require('trouble').setup({
 				zindex = 200,
 			},
 		},
-		icons = {
-			indent = {
-				last = '╰╴',
-				fold_open = ' ',
-				fold_closed = ' ',
-			},
-			kinds = add_padding(icons.kind_icons),
+	},
+	icons = {
+		indent = {
+			last = '╰╴',
+			fold_open = ' ',
+			fold_closed = ' ',
 		},
+		kinds = add_padding(icons.kind_icons),
 	},
 })

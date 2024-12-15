@@ -9,10 +9,10 @@ M.diag_sign = {
 }
 
 M.edge_char = {
-	left = '',
-	right = '',
-	-- left = '',
-	-- right = '',
+	-- left = '',
+	-- right = '',
+	left = '',
+	right = '',
 }
 
 M.fold_sign = {
@@ -27,13 +27,14 @@ M.kind_icons = {
 	Array = '',
 	Object = '󰅩',
 	Package = '󰏖',
+	Null = '',
 	-- keys from lspkind
 	Text = '󰉿',
 	Method = '󰆧',
 	Function = '󰡱',
 	Constructor = '',
-	Field = '󰜢',
-	Variable = '󰮐',
+	Field = '',
+	Variable = '',
 	Class = '󰠱',
 	Interface = '',
 	Module = '',
@@ -52,7 +53,6 @@ M.kind_icons = {
 	Struct = '󰙅',
 	Event = '',
 	Operator = '󰆕',
-	TypeParameter = '',
+	TypeParameter = '',
 }
-
 return M

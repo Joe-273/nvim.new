@@ -29,7 +29,7 @@ local function components_creator()
 		flexible = 5,
 		{
 			provider = function()
-				return '  %2(' .. public.vimode.current_name() .. '%)'
+				return '  %-2(' .. public.vimode.current_name() .. '%)'
 			end,
 		},
 		{
