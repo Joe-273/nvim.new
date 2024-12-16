@@ -20,5 +20,11 @@
 ---@field diagnostic_info string
 ---@field diagnostic_warn string
 
----@alias CptFlavor "mocha" | "macchiato" | "frappe" | "latte"
----@alias TknFlavor "storm" | "night" | "moon" | "day"
+---@alias CptFlavor 'catppuccin-mocha' | 'catppuccin-macchiato' | 'catppuccin-frappe' | 'catppuccin-latte'
+---@alias TknFlavor 'tokyonight-storm' | 'tokyonight-night' | 'tokyonight-moon' | 'tokyonight-day'
+---@alias GhDFlavor 'github_dark' | 'github_dark_dimmed' | 'github_dark_default' | 'github_dark_high_contrast' | 'github_dark_colorblind' | 'github_dark_tritanopia'
+---@alias GhLFlavor 'github_light' | 'github_light_default' | 'github_light_high_contrast' | 'github_light_colorblind' | 'github_light_tritanopia'
+---@alias OdkFlavor 'onedark' | 'onelight' | 'onedark_dark' | 'onedark_vivid'
+---@alias NfxFlavor 'nightfox' |'dayfox' |'dawnfox' |'duskfox' |'nordfox' |'terafox' |'carbonfox'
+---@alias EfrFlavor 'everforest'
+---@alias Colorschemes CptFlavor|TknFlavor|GhDFlavor|GhLFlavor|OdkFlavor|NfxFlavor|EfrFlavor

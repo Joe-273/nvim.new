@@ -2,6 +2,10 @@ require('kaiho.config.options')
 require('kaiho.config.keymaps')
 require('kaiho.config.autocmds')
 
+-- NOTE: Choose a colorscheme here
+---@type Colorschemes|string
+vim.g.Colorscheme = 'tokyonight-moon'
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 ---@diagnostic disable-next-line: undefined-field

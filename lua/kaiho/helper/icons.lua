@@ -22,10 +22,10 @@ M.fold_sign = {
 
 M.kind_icons = {
 	String = '',
-	Number = '󰎠',
+	Number = '',
 	Boolean = '',
-	Array = '',
-	Object = '󰅩',
+	Array = '󰅨',
+	Object = '󱃖',
 	Package = '󰏖',
 	Null = '',
 	-- keys from lspkind
@@ -55,4 +55,9 @@ M.kind_icons = {
 	Operator = '󰆕',
 	TypeParameter = '',
 }
+
+M.other = {
+	selection = ' ',
+}
+
 return M

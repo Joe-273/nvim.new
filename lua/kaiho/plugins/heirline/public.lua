@@ -56,12 +56,12 @@ local vimode_colors = {
 }
 
 M.vimode = {
-	---@return string
+	---@return string: name of current mode
 	current_color = function()
 		local c = colors.get_colors()
 		return c[vimode_colors[vim.fn.mode(1):sub(1, 1)]]
 	end,
-	---@return string
+	---@return string: color of current mode
 	current_name = function()
 		return vimode_names[vim.fn.mode(1)]
 	end,

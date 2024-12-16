@@ -176,14 +176,14 @@ local function tabline_creator()
 		BufferFlag,
 	})
 
-	local TabLineOffset = {
+	local NeotreeOffset = {
 		condition = function(self)
 			local win = vim.api.nvim_tabpage_list_wins(0)[1]
 			local bufnr = vim.api.nvim_win_get_buf(win)
 			self.winid = win
 
 			if vim.bo[bufnr].filetype == 'neo-tree' then
-				self.title = 'Explore'
+				self.title = '[ Explore ]'
 				self.hl = { fg = fg, bg = C.main_dark_bg, bold = true }
 				return true
 			end
@@ -201,7 +201,7 @@ local function tabline_creator()
 	}
 
 	return {
-		TabLineOffset,
+		NeotreeOffset,
 		heirline_utils.make_buflist({
 			public.spacer_creator(),
 			BufferBlock,

@@ -17,8 +17,8 @@ local function get_color_by_hlgroup(group, attr)
 	end
 end
 
-local def_fg = '#eeeeee'
-local def_bg = '#111111'
+local def_fg = '#ffffff'
+local def_bg = '#000000'
 local colors_map = {
 	-- Base
 	main_fg = { hl = 'Normal' },

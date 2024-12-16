@@ -25,18 +25,11 @@ local function get_result_panel_width()
 	return result_panel_width
 end
 
--- Calculates the valid width for a panel based on a percentage of the result panel width,
--- with consideration for a maximum length and an optional threshold.
----@param panel_percent number
---   The percentage of the result panel width to use as the base width for the panel.
----@param max_length number
---   The maximum allowed length for the panel width.
----@param enable_threshold? number
---   An optional threshold width. If the result panel width is greater than this threshold,
---   the panel width will be calculated as a percentage of the result panel width; otherwise,
---   the threshold itself will be used as the panel width.
----@return number
---   The calculated valid width for the panel, respecting the maximum length and threshold.
+--- Calculates the panel width based on a percentage, with a maximum length and optional threshold.
+---@param panel_percent number The percentage of the result panel width.
+---@param max_length number The maximum width allowed for the panel.
+---@param enable_threshold? number Optional threshold width. If set, the width will be calculated based on the panel width or the threshold.
+---@return number: The calculated width for the panel.
 local function get_valid_width(panel_percent, max_length, enable_threshold)
 	local width = get_result_panel_width()
 	enable_threshold = enable_threshold or nil
@@ -53,17 +46,11 @@ local function get_valid_width(panel_percent, max_length, enable_threshold)
 	return width
 end
 
--- Adjusts the 'flex_part' string to fit within a specified 'width' when combined with 'fix_part'.
--- If the combined length of 'fix_part' and 'flex_part' exceeds 'width', 'flex_part' is truncated.
--- Otherwise, 'flex_part' is padded with spaces to meet the 'width'.
----@param flex_part string
---   The flexible string part that may be truncated or padded.
----@param fix_part string
---   The fixed string part with a constant length.
----@param width number
---   The maximum allowed width for the combined 'fix_part' and 'flex_part'.
----@return string
---   The adjusted string that fits within the specified 'width'.
+--- Adjusts the 'flex_part' string to fit within the specified 'width' when combined with 'fix_part'.
+---@param flex_part string The flexible part to adjust.
+---@param fix_part string The fixed part to combine with.
+---@param width number The maximum combined width for the two parts.
+---@return string: The adjusted string that fits within the width.
 local function process_string(flex_part, fix_part, width)
 	local diff_value = #fix_part + #flex_part - width
 

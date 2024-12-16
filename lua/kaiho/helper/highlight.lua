@@ -22,6 +22,7 @@ local function setup_hl(hl_group, callback, target_group)
 end
 
 ---@param groups string[]
+---@param callback fun(tbl: vim.api.keyset.hl_info): table
 local function change_hl_opts(groups, callback)
 	for i = 1, #groups do
 		local hl_group = groups[i]
@@ -37,31 +38,20 @@ local function chang_hl_links(hl_links)
 	end
 end
 
-local make_dark_fg_bg_groups = {
-	'StatusLine',
-	'StatusLineNC',
-	'NeoTreeStatusLineNC',
-	'TabLine',
-}
-local separator_groups = {
-	'WinSeparator',
-	'NeoTreeWinSeparator',
-}
-local neotree_normal_bg_groups = {
-	'NeoTreeNormal',
-	'NeoTreeNormalNC',
-}
-local to_clear_bg_groups = {
-	'NonText',
-	'NormalFloat',
-	'TelescopePromptTitle',
-}
+local make_italic = { 'Comment', 'Keyword', 'Statement', 'Conditional' }
+local make_dark_fg_bg_groups = { 'StatusLine' }
+local separator_groups = { 'WinSeparator', 'NeoTreeWinSeparator' }
+local make_dark_bg_groups = { 'NeoTreeNormal', 'NormalSB' }
+local to_clear_bg_groups = { 'NonText', 'NormalFloat' }
+
 local links_groups = {
 	-- Base
 	{ 'NormalFloat', 'Normal' },
 	{ 'TabLineFill', 'Normal' },
 	{ 'FloatBorder', 'Function' },
+	{ 'FloatTitle', 'Function' },
 	{ 'StatusLineNC', 'StatusLine' },
+	{ 'TabLine', 'StatusLine' },
 
 	-- SignColumn
 	{ 'SignColumn', 'LineNr' },
@@ -74,27 +64,44 @@ local links_groups = {
 	{ 'TelescopeNormal', 'Normal' },
 	{ 'TelescopeBorder', 'FloatBorder' },
 	{ 'TelescopePromptBorder', 'FloatBorder' },
+	{ 'TelescopePromptTitle', 'FloatTitle' },
+	{ 'TelescopeSelectionCaret', 'TelescopeSelection' },
+
+	-- Neotree
+	{ 'NeoTreeExpander', 'Directory' },
+	{ 'NeoTreeDirectoryIcon', 'Directory' },
+	{ 'NeoTreeEndOfBuffer', 'NeoTreeNormal' },
+	{ 'NeoTreeNormalNC', 'NeoTreeNormal' },
+	{ 'NeoTreeStatusLineNC', 'StatusLineNC' },
+
+	{ 'WhichKeyNormal', 'Normal' },
+	{ 'TroubleNormal', 'Normal' },
+	{ 'TroubleNormalNC', 'TroubleNormal' },
 }
 
--- TODO: 重新配置高亮组
 local function setup_hlgroup()
 	local C = colors.get_colors()
+	local dark_bg = C.main_dark_bg
+
+	change_hl_opts(make_italic, function(tbl)
+		tbl.italic = true
+		return tbl
+	end)
 
 	change_hl_opts(make_dark_fg_bg_groups, function(tbl)
-		tbl.bg = hex_to_integer(C.main_dark_bg)
+		tbl.bg = hex_to_integer(dark_bg)
 		tbl.fg = hex_to_integer(C.main_dark_fg)
 		return tbl
 	end)
 
 	change_hl_opts(separator_groups, function(tbl)
-		local dark_bg = hex_to_integer(C.main_dark_bg)
-		tbl.bg = dark_bg
-		tbl.fg = dark_bg
+		tbl.bg = hex_to_integer(dark_bg)
+		tbl.fg = hex_to_integer(dark_bg)
 		return tbl
 	end)
 
-	change_hl_opts(neotree_normal_bg_groups, function(tbl)
-		tbl.bg = hex_to_integer(C.main_dark_bg)
+	change_hl_opts(make_dark_bg_groups, function(tbl)
+		tbl.bg = hex_to_integer(dark_bg)
 		return tbl
 	end)
 
