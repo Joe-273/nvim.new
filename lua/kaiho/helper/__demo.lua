@@ -1,0 +1,81 @@
+-- TODO: 重新设计高亮组的变化
+-- 创建新的深色高亮组NormalDark，NormalDarkEntire，然后在这个基础上进行
+-- DarkBoth: 背景色main_dark_bg，前景色main_dark_fg
+-- DarkOnlyBg: 背景色上main_dark_bg，前景色是main_fg
+-- DarkEntire: 背景色和前景色都是main_dark_bg
+-- --
+-- NormalFloat,TabLine,TabLineFill -> Normal
+-- FloatTitle,FloatBorder -> Function
+-- StatusLine,StatusLineNC -> DarkBoth
+-- SignColumn,FoldColumn,CursorLineSign,CursorLineFold -> LineNr
+-- --
+-- Comment,Keyword,Statement,Conditional -> use italic style
+-- NonText,CursorLineNr -> clear bg
+-- --
+-- NeoTreeWinSeparator -> DarkEntire
+-- NeoTreeNormal,NeoTreeEndOfBuffer -> DarkOnlyBg
+-- NeoTreeStatusLine,NeoTreeStatusLineNC -> DarkBoth
+-- NeoTreeExpander,NeoTreeDirectoryIcon -> Directory
+-- --
+-- TelescopeNormal -> Normal
+-- TelescopeBorder,TelescopePromptBorder,TelescopePromptTitle -> NormalFloat
+-- --
+-- WhichKeyNormal -> Normal
+-- NoiceSplit -> DarkOnlyBg
+-- TroubleNormal,TroubleNormalNC -> DarkOnlyBg
+-- --
+--
+-- local hl_tbl: vim.api.keyset.hl_info {
+--     altfont?: true,
+--     bg?: integer,
+--     blend?: integer,
+--     bold?: true,
+--     cterm?: vim.api.keyset.hl_info.cterm,
+--     default?: true,
+--     fg?: integer,
+--     italic?: true,
+--     link?: string,
+--     nocombine?: true,
+--     reverse?: true,
+--     sp?: integer,
+--     standout?: true,
+--     strikethrough?: true,
+--     undercurl?: true,
+--     underdashed?: true,
+--     underdotted?: true,
+--     underdouble?: true,
+--     underline?: true,
+-- }
+--
+-- (parameter) tbl: vim.api.keyset.highlight {
+--     altfont?: boolean,
+--     background?: any,
+--     bg?: any,
+--     bg_indexed?: boolean,
+--     blend?: integer,
+--     bold?: boolean,
+--     cterm?: any,
+--     ctermbg?: any,
+--     ctermfg?: any,
+--     default?: boolean,
+--     fallback?: boolean,
+--     fg?: any,
+--     fg_indexed?: boolean,
+--     force?: boolean,
+--     foreground?: any,
+--     global_link?: any,
+--     italic?: boolean,
+--     link?: any,
+--     nocombine?: boolean,
+--     reverse?: boolean,
+--     sp?: any,
+--     special?: any,
+--     standout?: boolean,
+--     strikethrough?: boolean,
+--     undercurl?: boolean,
+--     underdashed?: boolean,
+--     underdotted?: boolean,
+--     underdouble?: boolean,
+--     underline?: boolean,
+--     url?: string,
+-- }

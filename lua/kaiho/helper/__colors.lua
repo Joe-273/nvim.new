@@ -65,23 +65,19 @@ local function get_colors()
 			vim.notify('Invalid value for color adjustment: ' .. value, vim.log.levels.WARN)
 			return
 		end
-
 		if not color then
 			vim.notify('Base color \'' .. base .. '\' not found.', vim.log.levels.WARN)
 			return
 		end
-
 		if not utils[action] then
 			vim.notify('Invalid color adjustment action: ' .. action, vim.log.levels.WARN)
 			return
 		end
-
 		return utils[action](color, value)
 	end
 
 	for color_key, color_tbl in pairs(colors_map) do
 		local hl = color_tbl.hl
-
 		if hl ~= nil then
 			hl = type(hl) ~= 'table' and { hl } or hl
 			for _, group_str in pairs(hl) do
@@ -99,8 +95,6 @@ local function get_colors()
 	for color_key, color_tbl in pairs(colors_map) do
 		local base = color_tbl.base
 		local meta = color_tbl.meta
-		-- print(base, meta)
-
 		if base and meta then
 			local action, value = meta:match('([^:]+):([%d,%.]+)')
 			colors[color_key] = adjust_color(base, action, value)

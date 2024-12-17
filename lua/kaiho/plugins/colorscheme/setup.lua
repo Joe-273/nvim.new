@@ -21,7 +21,7 @@ local function apply_theme(flavor)
 		group = vim.api.nvim_create_augroup('SetupTheme', { clear = true }),
 		callback = function()
 			pcall(vim.cmd.colorscheme, flavor)
-			require('kaiho.helper.highlight').setup_hlgroup()
+			require('kaiho.helper.highlight').setup_hl()
 		end,
 	})
 	return register_themes(theme_configs, flavor)

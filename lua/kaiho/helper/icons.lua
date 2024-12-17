@@ -9,10 +9,10 @@ M.diag_sign = {
 }
 
 M.edge_char = {
-	-- left = '',
-	-- right = '',
-	left = '',
-	right = '',
+	left = '',
+	right = '',
+	-- left = '',
+	-- right = '',
 }
 
 M.fold_sign = {

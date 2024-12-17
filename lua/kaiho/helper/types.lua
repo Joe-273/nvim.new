@@ -1,10 +1,6 @@
 ---@class Colors
 ---@field main_fg string
 ---@field main_bg string
----@field main_dark_fg string
----@field main_dark_bg string
----@field main_light_fg string
----@field main_light_bg string
 ---@field main_comment string
 ---@field main_constant string
 ---@field main_function string
@@ -12,19 +8,84 @@
 ---@field main_special string
 ---@field main_statement string
 ---@field main_string string
----@field git_add string
----@field git_change string
----@field git_delete string
+---@field git_added string
+---@field git_changed string
+---@field git_deleted string
 ---@field diagnostic_error string
 ---@field diagnostic_hint string
 ---@field diagnostic_info string
 ---@field diagnostic_warn string
+---@field main_dark_fg string
+---@field main_dark_bg string
+---@field main_light_fg string
+---@field main_light_bg string
 
----@alias CptFlavor 'catppuccin-mocha' | 'catppuccin-macchiato' | 'catppuccin-frappe' | 'catppuccin-latte'
----@alias TknFlavor 'tokyonight-storm' | 'tokyonight-night' | 'tokyonight-moon' | 'tokyonight-day'
----@alias GhDFlavor 'github_dark' | 'github_dark_dimmed' | 'github_dark_default' | 'github_dark_high_contrast' | 'github_dark_colorblind' | 'github_dark_tritanopia'
----@alias GhLFlavor 'github_light' | 'github_light_default' | 'github_light_high_contrast' | 'github_light_colorblind' | 'github_light_tritanopia'
----@alias OdkFlavor 'onedark' | 'onelight' | 'onedark_dark' | 'onedark_vivid'
----@alias NfxFlavor 'nightfox' |'dayfox' |'dawnfox' |'duskfox' |'nordfox' |'terafox' |'carbonfox'
----@alias EfrFlavor 'everforest'
----@alias Colorschemes CptFlavor|TknFlavor|GhDFlavor|GhLFlavor|OdkFlavor|NfxFlavor|EfrFlavor
+---@alias BaseColors
+---| 'main_fg'
+---| 'main_bg'
+---| 'main_comment'
+---| 'main_constant'
+---| 'main_function'
+---| 'main_operator'
+---| 'main_special'
+---| 'main_statement'
+---| 'main_string'
+---| 'git_add'
+---| 'git_change'
+---| 'git_delete'
+---| 'diagnostic_error'
+---| 'diagnostic_hint'
+---| 'diagnostic_info'
+---| 'diagnostic_warn'
+---@alias DerivativeColors
+---| 'main_dark_fg'
+---| 'main_dark_bg'
+---| 'main_light_fg'
+---| 'main_light_bg'
+
+---@alias CptFlavor
+---| 'catppuccin-mocha'
+---| 'catppuccin-macchiato'
+---| 'catppuccin-frappe'
+---| 'catppuccin-latte'
+---@alias TknFlavor
+---| 'tokyonight-storm'
+---| 'tokyonight-night'
+---| 'tokyonight-moon'
+---| 'tokyonight-day'
+---@alias GhDFlavor
+---| 'github_dark'
+---| 'github_dark_dimmed'
+---| 'github_dark_default'
+---| 'github_dark_high_contrast'
+---| 'github_dark_colorblind'
+---| 'github_dark_tritanopia'
+---@alias GhLFlavor
+---| 'github_light'
+---| 'github_light_default'
+---| 'github_light_high_contrast'
+---| 'github_light_colorblind'
+---| 'github_light_tritanopia'
+---@alias OdkFlavor
+---| 'onedark'
+---| 'onelight'
+---| 'onedark_dark'
+---| 'onedark_vivid'
+---@alias NfxFlavor
+---| 'nightfox'
+---| 'dayfox'
+---| 'dawnfox'
+---| 'duskfox'
+---| 'nordfox'
+---| 'terafox'
+---| 'carbonfox'
+---@alias EfrFlavor
+---| 'everforest'
+---@alias Colorschemes
+---| CptFlavor
+---| TknFlavor
+---| GhDFlavor
+---| GhLFlavor
+---| OdkFlavor
+---| NfxFlavor
+---| EfrFlavor

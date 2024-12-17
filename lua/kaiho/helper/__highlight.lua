@@ -41,8 +41,8 @@ end
 local make_italic = { 'Comment', 'Keyword', 'Statement', 'Conditional' }
 local make_dark_fg_bg_groups = { 'StatusLine' }
 local separator_groups = { 'WinSeparator', 'NeoTreeWinSeparator' }
-local make_dark_bg_groups = { 'NeoTreeNormal', 'NormalSB' }
-local to_clear_bg_groups = { 'NonText', 'NormalFloat' }
+local make_dark_bg_groups = { 'NeoTreeNormal', 'NormalSB', 'TroubleNormal', 'NoiceSplit' }
+local to_clear_bg_groups = { 'CursorLineNr' }
 
 local links_groups = {
 	-- Base
@@ -55,10 +55,9 @@ local links_groups = {
 
 	-- SignColumn
 	{ 'SignColumn', 'LineNr' },
-	{ 'CursorLineNr', 'LineNr' },
-	{ 'FoldColumn', 'SignColumn' },
-	{ 'CursorLineSign', 'SignColumn' },
-	{ 'CursorLineFold', 'SignColumn' },
+	{ 'FoldColumn', 'LineNr' },
+	{ 'CursorLineSign', 'LineNr' },
+	{ 'CursorLineFold', 'LineNr' },
 
 	-- Telescope
 	{ 'TelescopeNormal', 'Normal' },
@@ -75,7 +74,6 @@ local links_groups = {
 	{ 'NeoTreeStatusLineNC', 'StatusLineNC' },
 
 	{ 'WhichKeyNormal', 'Normal' },
-	{ 'TroubleNormal', 'Normal' },
 	{ 'TroubleNormalNC', 'TroubleNormal' },
 }
 

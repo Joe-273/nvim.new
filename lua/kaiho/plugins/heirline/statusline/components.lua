@@ -85,21 +85,21 @@ local function components_creator()
 					local count = self.status_dict.added or 0
 					return count > 0 and ('+' .. count)
 				end,
-				hl = { fg = C.git_add },
+				hl = { fg = C.git_added },
 			},
 			{
 				provider = function(self)
 					local count = self.status_dict.removed or 0
 					return count > 0 and ('-' .. count)
 				end,
-				hl = { fg = C.git_delete },
+				hl = { fg = C.git_deleted },
 			},
 			{
 				provider = function(self)
 					local count = self.status_dict.changed or 0
 					return count > 0 and ('~' .. count)
 				end,
-				hl = { fg = C.git_change },
+				hl = { fg = C.git_changed },
 			},
 			{
 				condition = function(self)

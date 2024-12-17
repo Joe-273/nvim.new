@@ -54,7 +54,7 @@ local lazygit = Terminal:new({
 	on_open = function(term)
 		local cur_opts = { noremap = true, silent = true, buffer = term.bufnr }
 		vim.cmd('startinsert!')
-		utils.map('n', 'q', '<cmd>close<CR>', 'quit lazygit', cur_opts)
+		utils.map('n', 'q', '<CMD>close<CR>', 'quit lazygit', cur_opts)
 	end,
 	-- function to run on closing the terminal
 	on_close = function()

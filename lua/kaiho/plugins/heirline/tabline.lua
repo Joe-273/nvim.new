@@ -7,6 +7,20 @@ local public = require('kaiho.plugins.heirline.public')
 
 local edge_char = icons.edge_char
 
+-- Function used to detect whether exist trouble window
+local function is_trouble_window(win)
+	local bufnr = vim.api.nvim_win_get_buf(win)
+	return vim.bo[bufnr].filetype == 'trouble'
+end
+local function is_regular_window(win)
+	local win_config = vim.api.nvim_win_get_config(win)
+	return not win_config.relative or win_config.relative == ''
+end
+local function is_right_split_window(win)
+	local win_config = vim.api.nvim_win_get_config(win)
+	return win_config.split == 'right'
+end
+
 local function tabline_creator()
 	local C = colors.get_colors()
 
@@ -95,6 +109,7 @@ local function tabline_creator()
 		buflist._show_picker = false
 		vim.cmd.redrawtabline()
 	end
+
 	utils.map('n', '<leader>pw', pick_buffer, 'pick [w]inbar buffer', { noremap = true, silent = true })
 
 	local BufferIconAndName = {
@@ -176,6 +191,29 @@ local function tabline_creator()
 		BufferFlag,
 	})
 
+	local TroubleOffset = {
+		condition = function(self)
+			local wins = vim.api.nvim_tabpage_list_wins(0)
+			for _, win in ipairs(wins) do
+				if is_trouble_window(win) and is_regular_window(win) and is_right_split_window(win) then
+					self.winid = win
+					self.title = '[ Outline ]'
+					self.hl = { fg = fg, bg = C.main_dark_bg, bold = true }
+					return true
+				end
+			end
+		end,
+
+		{
+			provider = function(self)
+				local title = self.title
+				local width = vim.api.nvim_win_get_width(self.winid)
+				local pad = math.ceil((width - #title) / 2)
+				return string.rep(' ', pad) .. title .. string.rep(' ', pad)
+			end,
+		},
+		public.spacer_creator(),
+	}
 	local NeotreeOffset = {
 		condition = function(self)
 			local win = vim.api.nvim_tabpage_list_wins(0)[1]
@@ -212,6 +250,8 @@ local function tabline_creator()
 			provider = ' ',
 			hl = { fg = fg, bg = C.main_bg },
 		}),
+		{ provider = '%=' },
+		TroubleOffset,
 	}
 end
 

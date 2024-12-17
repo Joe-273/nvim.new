@@ -8,10 +8,10 @@ return {
 		'antosha417/nvim-lsp-file-operations',
 	},
 	keys = {
-		{ '<C-e>', '<CMD>Neotree toggle<cr>', desc = 'Toggle: explore', mode = { 'n', 't' } },
+		{ '<C-e>', '<CMD>Neotree toggle<CR>', desc = 'Toggle: explore', mode = { 'n', 't' } },
 		{
 			'<leader>e',
-			'<CMD>Neotree filesystem reveal_force_cwd toggle<cr>',
+			'<CMD>Neotree filesystem reveal_force_cwd toggle<CR>',
 			desc = 'Toggle: [e]xplore to CWD',
 			mode = { 'n', 't' },
 		},

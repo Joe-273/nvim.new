@@ -4,7 +4,7 @@ require('kaiho.config.autocmds')
 
 -- NOTE: Choose a colorscheme here
 ---@type Colorschemes|string
-vim.g.Colorscheme = 'tokyonight-moon'
+vim.g.Colorscheme = 'tokyonight-storm'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
