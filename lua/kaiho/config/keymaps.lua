@@ -11,9 +11,9 @@ group_map('Escape', {
 	{ 'i', 'jk', '<Esc>', 'Exit insert mode', opts },
 	{ 'i', 'kk', '<Esc>', 'Exit insert mode', opts },
 	{ 'i', 'jj', '<Esc>', 'Exit insert mode', opts },
-	{ 't', '<C-j><C-k>', '<C-\\><C-n>', 'Exit terminal mode', opts },
-	{ 't', '<C-k><C-k>', '<C-\\><C-n>', 'Exit terminal mode', opts },
-	{ 't', '<C-j><C-j>', '<C-\\><C-n>', 'Exit terminal mode', opts },
+	{ 't', '<S-j><S-k>', '<C-\\><C-n>', 'Exit terminal mode', opts },
+	{ 't', '<S-k><S-k>', '<C-\\><C-n>', 'Exit terminal mode', opts },
+	{ 't', '<S-j><S-j>', '<C-\\><C-n>', 'Exit terminal mode', opts },
 })
 
 group_map('Buffer', {

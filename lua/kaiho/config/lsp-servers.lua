@@ -21,15 +21,15 @@ require('mason-tool-installer').setup({
 })
 
 local function get_lsp_config()
-	local lsps_tb = {}
+	local lsps_tbl = {}
 	for _, lsp_name in pairs(lsps) do
 		local ok, lsp_config = pcall(require, 'kaiho.config.lsp-config.' .. lsp_name)
 		if not ok then
 			lsp_config = {}
 		end
-		lsps_tb[lsp_name] = lsp_config
+		lsps_tbl[lsp_name] = lsp_config
 	end
-	return lsps_tb
+	return lsps_tbl
 end
 
 return get_lsp_config()

@@ -191,16 +191,16 @@ local function tabline_creator()
 		BufferFlag,
 	})
 
-	local TroubleOffset = {
+	local NeotreeOffset = {
 		condition = function(self)
-			local wins = vim.api.nvim_tabpage_list_wins(0)
-			for _, win in ipairs(wins) do
-				if is_trouble_window(win) and is_regular_window(win) and is_right_split_window(win) then
-					self.winid = win
-					self.title = '[ Outline ]'
-					self.hl = { fg = fg, bg = C.main_dark_bg, bold = true }
-					return true
-				end
+			local win = vim.api.nvim_tabpage_list_wins(0)[1]
+			local bufnr = vim.api.nvim_win_get_buf(win)
+			self.winid = win
+
+			if vim.bo[bufnr].filetype == 'neo-tree' then
+				self.title = '[ Explore ]'
+				self.hl = { fg = fg, bg = C.main_dark_bg, bold = true }
+				return true
 			end
 		end,
 
@@ -214,16 +214,16 @@ local function tabline_creator()
 		},
 		public.spacer_creator(),
 	}
-	local NeotreeOffset = {
+	local TroubleOffset = {
 		condition = function(self)
-			local win = vim.api.nvim_tabpage_list_wins(0)[1]
-			local bufnr = vim.api.nvim_win_get_buf(win)
-			self.winid = win
-
-			if vim.bo[bufnr].filetype == 'neo-tree' then
-				self.title = '[ Explore ]'
-				self.hl = { fg = fg, bg = C.main_dark_bg, bold = true }
-				return true
+			local wins = vim.api.nvim_tabpage_list_wins(0)
+			for _, win in ipairs(wins) do
+				if is_trouble_window(win) and is_regular_window(win) and is_right_split_window(win) then
+					self.winid = win
+					self.title = '[ Outline ]'
+					self.hl = { fg = fg, bg = C.main_dark_bg, bold = true }
+					return true
+				end
 			end
 		end,
 

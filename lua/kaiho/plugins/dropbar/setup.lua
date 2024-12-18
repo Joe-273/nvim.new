@@ -34,6 +34,7 @@ end
 local function parent_dir_or_close_menu()
 	local menu = dropbar_utils.menu.get_current()
 	if not menu then
+		menu:close()
 		return
 	end
 	if menu.prev_menu then
@@ -53,6 +54,16 @@ local function parent_dir_or_close_menu()
 	end
 end
 
+local function close_all_menu()
+	local menu = dropbar_utils.menu.get_current()
+	while menu and menu.prev_menu do
+		menu = menu.prev_menu
+	end
+	if menu then
+		menu:close()
+	end
+end
+
 utils.map('n', '<leader>pn', dropbar_api.pick, 'pick [n]avigator', { noremap = true, silent = true })
 
 local function add_padding(t)
@@ -64,8 +75,12 @@ local function add_padding(t)
 end
 
 require('dropbar').setup({
-	-- only display path in the winbar
-	-- bar = { sources = { require('dropbar.sources').path } },
+	bar = {
+		-- Use the same labels as flash.
+		pick = { pivots = 'asdfghjklqwertyuiopzxcvbnm' },
+		-- only display path in the winbar
+		-- sources = { require('dropbar.sources').path },
+	},
 	icons = {
 		enable = true,
 		ui = {
@@ -83,6 +98,8 @@ require('dropbar').setup({
 			['l'] = open_dir_or_file,
 			['<CR>'] = open_item_and_close_menu,
 			['o'] = open_item_and_close_menu,
+			['q'] = close_all_menu,
+			['<Esc>'] = close_all_menu,
 		},
 	},
 })
