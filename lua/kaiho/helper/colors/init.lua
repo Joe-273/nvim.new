@@ -34,8 +34,8 @@ local function get_base_colors(colors_map)
 	return base_colors_tbl
 end
 
+-- Derivcative colors from base
 local derivative_colors_map = {
-	-- Extra base
 	main_dark_fg = { 'main_fg', 'darken:0.85' },
 	main_dark_bg = { 'main_bg', 'darken:0.85' },
 	main_light_fg = { 'main_fg', 'lighten:0.85' },

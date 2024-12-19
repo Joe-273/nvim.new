@@ -1,4 +1,3 @@
-local dropbar_utils = require('dropbar.utils')
 local dropbar_api = require('dropbar.api')
 
 local utils = require('kaiho.helper.utils')
