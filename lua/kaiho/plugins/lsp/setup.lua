@@ -2,9 +2,6 @@
 -- Init Lsp keymaps & diagnostic
 require('kaiho.plugins.lsp.handlers.setup')
 
--- Setup mason
-require('mason').setup({ ui = { border = 'rounded' } })
-
 -- Merge default_capabilities & cmp_nvim_lsp_capabilities
 local capabilities = vim.tbl_deep_extend(
 	'force',
@@ -20,6 +17,9 @@ capabilities.textDocument.foldingRange = {
 -- local lsp_server = lsp_servers.get_lsp_config()
 local lsp_server = require('kaiho.config.lsp-servers')
 
+-- Setup mason
+require('mason').setup({ ui = { border = 'rounded' } })
+
 require('mason-lspconfig').setup({
 	handlers = {
 		function(server_name)
@@ -31,4 +31,5 @@ require('mason-lspconfig').setup({
 	},
 })
 
+-- Auto install laps/formaters/linters
 vim.cmd('MasonToolsInstall')

@@ -9,6 +9,7 @@ local build_func = utils.build_func
 local arg = { vim.fn.line('.'), vim.fn.line('v') }
 local stage_choose_hunk = build_func(gitsigns.stage_hunk, arg)
 local reset_choose_hunk = build_func(gitsigns.reset_hunk, arg)
+
 local prev_hunk = build_func(gitsigns.nav_hunk, 'prev')
 local next_hunk = build_func(gitsigns.nav_hunk, 'next')
 group_map('Hunk', {

@@ -76,5 +76,3 @@ require('ufo').setup({
 		return { 'treesitter', 'indent' }
 	end,
 })
-
-require('kaiho.plugins.ufo.keymaps')

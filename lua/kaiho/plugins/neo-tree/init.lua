@@ -18,5 +18,8 @@ return {
 	},
 	config = function()
 		require('kaiho.plugins.neo-tree.setup')
+		-- Initialize ufo plugin when opening neotree
+		require('ufo').setup()
+		require('lsp-file-operations').setup()
 	end,
 }

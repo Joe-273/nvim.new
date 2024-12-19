@@ -26,6 +26,7 @@ local function delete_other_buffers()
 		end
 	end
 end
+
 group_map('Buffer', {
 	{ 'n', '<leader>c', delete_current_buffer, '[c]lose current buffer', opts },
 	{ 'n', '<leader>C', delete_other_buffers, '[C]lose other buffers', opts },

@@ -70,7 +70,3 @@ require('neo-tree').setup({
 		},
 	},
 })
-
--- Initialize ufo plugin when opening neotree
-require('ufo').setup()
-require('lsp-file-operations').setup()
