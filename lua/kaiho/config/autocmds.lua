@@ -25,3 +25,12 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 		require('lazy').reload({ plugins = { 'heirline.nvim' } })
 	end,
 })
+
+-- Remove auto comment
+vim.api.nvim_create_autocmd('BufEnter', {
+	group = vim.api.nvim_create_augroup('RemoveAutoComment', { clear = true }),
+	pattern = '*',
+	callback = function()
+		vim.opt.formatoptions:remove({ 'o', 'r' })
+	end,
+})
