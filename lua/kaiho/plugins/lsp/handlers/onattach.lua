@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 		local opts = { noremap = true, silent = true, buffer = event.buf }
 		local group_map = utils.group_map
-
+		local format = utils.build_func(require('conform').format, { async = true, lsp_format = 'fallback' })
 		group_map('Goto', {
 			{ 'n', 'gd', Pickers.lsp_definitions, '[d]efinition', opts }, -- Definition
 			{ 'n', 'gr', Pickers.lsp_references, '[r]eferences', opts }, -- Reference
@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			{ 'n', ']d', vim.diagnostic.goto_next, 'next [d]iagnostic', opts }, -- Next diagnostic
 		})
 		group_map('LSP', {
-			{ 'n', '<leader>lf', vim.lsp.buf.format, '[f]ormat', opts }, -- Format
+			{ 'n', '<leader>lf', format, '[f]ormat', opts }, -- Format
 			{ 'n', '<leader>lr', vim.lsp.buf.rename, '[r]ename', opts }, -- Rename
 			{ 'n', '<leader>ls', vim.lsp.buf.signature_help, '[s]ignature help', opts }, -- Format
 			{ 'n', '<leader>ld', vim.diagnostic.open_float, '[d]ianostic', opts }, -- Diagnostic

@@ -61,7 +61,7 @@ local hl_link_map = {
 			'NeoTreeNormal',
 			'NeoTreeNormalNC',
 			'NeoTreeEndOfBuffer',
-			--Noice
+			-- Noice
 			'NoiceSplit',
 			-- Trouble
 			'TroubleNormal',
@@ -73,6 +73,8 @@ local hl_link_map = {
 	{ { 'SignColumn', 'FoldColumn', 'CursorLineSign', 'CursorLineFold' }, 'LineNr' },
 	-- NeoTree
 	{ { 'NeoTreeExpander', 'NeoTreeDirectoryIcon' }, 'Directory' },
+	-- LspKind
+	{ { 'LspKindFile' }, 'LspKindText' },
 }
 
 local function setup_hl()

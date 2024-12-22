@@ -104,6 +104,6 @@ local function get_colors()
 	return colors
 end
 
-return {
-	get_colors = get_colors,
-}
+-- return {
+-- 	get_colors = get_colors,
+-- }
