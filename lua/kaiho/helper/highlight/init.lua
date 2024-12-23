@@ -17,8 +17,6 @@ local hl_link_map = {
 	{
 		{ -- Base
 			'NormalFloat',
-			'TabLine',
-			'TabLineFill',
 			-- Telescope
 			'TelescopeNormal',
 			-- WhichKey
@@ -57,6 +55,9 @@ local hl_link_map = {
 	},
 	{
 		{
+			-- Tabline
+			'TabLine',
+			'TabLineFill',
 			-- Neotree
 			'NeoTreeNormal',
 			'NeoTreeNormalNC',

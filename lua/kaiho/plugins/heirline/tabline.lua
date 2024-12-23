@@ -244,11 +244,11 @@ local function tabline_creator()
 			public.spacer_creator(),
 			BufferBlock,
 			hl = function(self)
-				return { fg = self.is_active and C.main_fg or fg }
+				return { fg = self.is_active and C.main_fg or fg, bg = bg }
 			end,
-		}, { provider = ' ', hl = { fg = fg, bg = C.main_bg } }, {
+		}, { provider = ' ', hl = { fg = fg, bg = bg } }, {
 			provider = ' ',
-			hl = { fg = fg, bg = C.main_bg },
+			hl = { fg = fg, bg = bg },
 		}),
 		{ provider = '%=' },
 		TroubleOffset,
