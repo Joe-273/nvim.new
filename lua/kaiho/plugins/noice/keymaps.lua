@@ -24,6 +24,10 @@ local function toggle_noice()
 		vim.api.nvim_win_close(noice_win_id, true)
 	else
 		require('noice').cmd('history')
+		-- Goto bottom
+		vim.defer_fn(function()
+			vim.cmd('normal! G')
+		end, 0)
 	end
 end
 

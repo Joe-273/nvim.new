@@ -1,6 +1,5 @@
 return {
 	'mg979/vim-visual-multi',
-	lazy = true,
 	keys = { { '<C-n>', mode = { 'n', 'x' } } },
 	config = function()
 		vim.g.VM_maps = vim.g.VM_maps or {}

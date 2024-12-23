@@ -52,6 +52,7 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 		local wins = vim.api.nvim_tabpage_list_wins(0)
 		for _, win in ipairs(wins) do
 			if is_trouble_window(win) and is_relative_window(win) then
+				-- Run async
 				vim.defer_fn(function()
 					vim.api.nvim_set_option_value('winhighlight', 'Normal:Normal', { win = win })
 					vim.api.nvim_set_option_value('foldcolumn', '0', { win = win })

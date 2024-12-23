@@ -31,19 +31,38 @@ require('noice').setup({
 	},
 	routes = {
 		{
-			view = 'notify',
-			filter = { event = 'msg_showmode' },
-		},
-		{
-			filter = { event = 'msg_show', min_height = 20 },
-			view = 'cmdline_output',
-		},
-		{
-			filter = { event = 'msg_show', kind = '', find = 'written' },
+			filter = {
+				event = 'notify',
+				find = 'Translate',
+			},
 			opts = { skip = true },
 		},
+		-- {
+		-- 	view = 'notify',
+		-- 	filter = {
+		-- 		event = 'msg_showmode',
+		-- 		any = {
+		-- 			{ find = 'recording' },
+		-- 		},
+		-- 	},
+		-- },
+		-- {
+		-- 	view = 'notify',
+		-- 	filter = { event = 'msg_showmode' },
+		-- },
+		-- {
+		-- 	filter = { event = 'msg_show', min_height = 20 },
+		-- 	view = 'cmdline_output',
+		-- },
 	},
 	format = {
+		details = {
+			'{level} ',
+			'{date} ',
+			'{title} ',
+			'{cmdline} ',
+			'{message}',
+		},
 		lsp_progress = {
 			'({data.progress.percentage}%) ',
 			{ '{spinner} ', hl_group = 'NoiceLspProgressSpinner' },

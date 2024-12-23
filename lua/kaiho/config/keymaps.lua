@@ -19,7 +19,7 @@ group_map('Escape', {
 group_map('Buffer', {
 	-- Keybinds to process buffer
 	{ 'n', '<C-q>', '<CMD>qall<CR>', '[q]uit all buffer', opts },
-	{ 'n', '<leader>w', '<CMD>w<CR>', '[w]rite current buffer', opts },
+	{ 'n', '<leader>w', '<CMD>silent w<CR>', '[w]rite current buffer', opts },
 	{ 'n', '<leader>W', '<CMD>wall<CR>', '[W]rite all buffers', opts },
 	{ 'n', '<leader>r', '<CMD>e!<CR>', '[r]eflesh buffer', opts },
 })

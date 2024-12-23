@@ -28,6 +28,7 @@ M.kind_icons = {
 	Object = '󱃖',
 	Package = '󰏖',
 	Null = '',
+	Identifier = '',
 	-- keys from lspkind
 	Text = '󰉿',
 	Method = '󰆧',
