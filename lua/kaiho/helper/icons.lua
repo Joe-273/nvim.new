@@ -1,4 +1,5 @@
 -- [[ Provide global icons ]]
+
 local M = {}
 
 M.diag_sign = {

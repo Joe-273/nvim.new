@@ -3,7 +3,7 @@ require('kaiho.config.keymaps')
 require('kaiho.config.autocmds')
 
 -- NOTE: Choose a colorscheme here
----@type Colorschemes|string
+---@type Colorschemes
 vim.g.Colorscheme = 'tokyonight-storm'
 
 -- [[ Install `lazy.nvim` plugin manager ]]

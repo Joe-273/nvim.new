@@ -40,7 +40,7 @@ local function statusline_creator()
 				return conditions.is_active()
 					and not conditions.buffer_matches({ filetype = { 'neo-tree' }, buftype = { 'nofile' } })
 			end,
-			structure.right_structure(comps.Ruler, {}, comps.Ts),
+			structure.right_structure(comps.Ruler, comps.Ts, comps.Record),
 		},
 		hl = { fg = fg, bg = bg },
 	}

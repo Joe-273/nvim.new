@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 local conditions = require('heirline.conditions')
 
 local colors = require('kaiho.helper.colors')
@@ -166,8 +167,7 @@ local function components_creator()
 				local cwd = vim.fn.getcwd()
 				cwd = vim.fn.fnamemodify(cwd, ':~')
 				local path_separator = package.config:sub(1, 1)
-				local trail = cwd:sub(-1) == path_separator and '' or path_separator
-				return '  ' .. cwd .. trail .. ' '
+				return ' ( ' .. cwd:gsub('~', ' '):gsub(path_separator, ' ') .. ' ) '
 			end,
 		},
 		{
@@ -190,7 +190,7 @@ local function components_creator()
 		flexible = 3,
 		{
 			provider = function()
-				return '󰪥 TS(' .. require('nvim-treesitter.parsers').get_buf_lang(vim.api.nvim_get_current_buf()) .. ') '
+				return ' TS(' .. require('nvim-treesitter.parsers').get_buf_lang(vim.api.nvim_get_current_buf()) .. ') '
 			end,
 		},
 		{
@@ -207,7 +207,17 @@ local function components_creator()
 				for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
 					table.insert(names, server.name)
 				end
-				return ' 󰲒 (' .. table.concat(names, ' ') .. ') '
+				return ' (' .. table.concat(names, ' ') .. ') '
+			end,
+		},
+	}
+
+	local Record = {
+		condition = require('noice').api.status.mode.has,
+		{
+			provider = function()
+				local record_msg = require('noice').api.status.mode.get()
+				return '󰻃 ' .. '⌜' .. record_msg:gsub('recording', ''):match('^%s*(.-)%s*$') .. '⌟ '
 			end,
 		},
 	}
@@ -221,6 +231,7 @@ local function components_creator()
 		Ruler = Ruler,
 		Ts = Ts,
 		Lsp = Lsp,
+		Record = Record,
 	}
 end
 

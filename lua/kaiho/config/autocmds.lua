@@ -19,7 +19,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.api.nvim_create_autocmd('ColorScheme', {
 	group = vim.api.nvim_create_augroup('SetupHighlight', { clear = true }),
 	callback = function()
-		-- require('kaiho.helper.highlight').setup_hlgroup()
 		require('kaiho.helper.highlight').setup_hl()
 
 		require('lazy').reload({ plugins = { 'heirline.nvim' } })
