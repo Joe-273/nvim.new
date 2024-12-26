@@ -5,16 +5,7 @@ local group_map = utils.group_map
 local map = utils.map
 
 map('n', '<Esc>', '<CMD>nohlsearch<CR>', 'Clear highlights')
-
--- Keymaps to escape insert mode
-group_map('Escape', {
-	{ 'i', 'jk', '<Esc>', 'Exit insert mode', opts },
-	{ 'i', 'kk', '<Esc>', 'Exit insert mode', opts },
-	{ 'i', 'jj', '<Esc>', 'Exit insert mode', opts },
-	{ 't', '<S-j><S-k>', '<C-\\><C-n>', 'Exit terminal mode', opts },
-	{ 't', '<S-k><S-k>', '<C-\\><C-n>', 'Exit terminal mode', opts },
-	{ 't', '<S-j><S-j>', '<C-\\><C-n>', 'Exit terminal mode', opts },
-})
+map('t', '<Esc><Esc>', '<C-\\><C-n>', 'Exit terminal mode', opts)
 
 group_map('Buffer', {
 	-- Keybinds to process buffer

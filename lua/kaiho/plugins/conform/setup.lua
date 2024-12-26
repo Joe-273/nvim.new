@@ -26,6 +26,8 @@ require('conform').setup({
 		yaml = { 'prettierd' },
 		markdown = { 'prettierd' },
 		lua = { 'stylua' },
+		zsh = { 'shfmt' },
+		bash = { 'shfmt' },
 	},
 
 	formatters = {

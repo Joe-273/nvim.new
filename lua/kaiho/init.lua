@@ -1,10 +1,7 @@
+require('kaiho.config.initial') -- User Preferences
 require('kaiho.config.options')
 require('kaiho.config.keymaps')
 require('kaiho.config.autocmds')
-
--- NOTE: Choose a colorscheme here
----@type Colorschemes
-vim.g.Colorscheme = 'tokyonight-storm'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'

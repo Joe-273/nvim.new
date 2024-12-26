@@ -33,3 +33,18 @@ vim.api.nvim_create_autocmd('BufEnter', {
 		vim.opt.formatoptions:remove({ 'o', 'r' })
 	end,
 })
+
+-- Auto switch input methods
+vim.api.nvim_create_augroup('InputMethodSelect', { clear = true })
+vim.api.nvim_create_autocmd('InsertEnter', {
+	group = 'InputMethodSelect',
+	callback = function()
+		require('kaiho.helper.auto-im').restore_prev_im()
+	end,
+})
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'FocusGained' }, {
+	group = 'InputMethodSelect',
+	callback = function()
+		require('kaiho.helper.auto-im').switch_default_im()
+	end,
+})
