@@ -8,7 +8,6 @@ M.diag_sign = {
 	info = ' ',
 	hint = ' ',
 }
-
 M.edge_char = {
 	left = '',
 	right = '',
@@ -56,6 +55,13 @@ M.kind_icons = {
 	Event = '',
 	Operator = '󰆕',
 	TypeParameter = '',
+}
+
+M.sep_chars = {
+	thin_left_aligned = '▏',
+	thin_right_aligned = '▕',
+	thick_left_aligned = '▌',
+	thick_right_aligned = '▐',
 }
 
 M.other = {

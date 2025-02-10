@@ -51,6 +51,9 @@ vim.opt.breakindent = true
 -- Save undo history
 vim.opt.undofile = true
 
+-- Disable completion
+vim.opt.completeopt = 'noselect'
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 

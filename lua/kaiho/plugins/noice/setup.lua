@@ -37,23 +37,6 @@ require('noice').setup({
 			},
 			opts = { skip = true },
 		},
-		-- {
-		-- 	view = 'notify',
-		-- 	filter = {
-		-- 		event = 'msg_showmode',
-		-- 		any = {
-		-- 			{ find = 'recording' },
-		-- 		},
-		-- 	},
-		-- },
-		-- {
-		-- 	view = 'notify',
-		-- 	filter = { event = 'msg_showmode' },
-		-- },
-		-- {
-		-- 	filter = { event = 'msg_show', min_height = 20 },
-		-- 	view = 'cmdline_output',
-		-- },
 	},
 	format = {
 		details = {
