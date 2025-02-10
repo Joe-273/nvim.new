@@ -51,6 +51,9 @@ vim.opt.breakindent = true
 -- Save undo history
 vim.opt.undofile = true
 
+-- Disable completion
+vim.opt.completeopt = 'noselect'
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
@@ -72,4 +75,5 @@ vim.opt.cursorline = true
 -- Only one statusline
 vim.opt.laststatus = 2
 
+vim.opt.shortmess:append('c')
 vim.opt.shortmess:append('C')

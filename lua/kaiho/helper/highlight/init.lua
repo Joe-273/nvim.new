@@ -17,8 +17,6 @@ local hl_link_map = {
 	{
 		{ -- Base
 			'NormalFloat',
-			'TabLine',
-			'TabLineFill',
 			-- Telescope
 			'TelescopeNormal',
 			-- WhichKey
@@ -57,11 +55,14 @@ local hl_link_map = {
 	},
 	{
 		{
+			-- Tabline
+			'TabLine',
+			'TabLineFill',
 			-- Neotree
 			'NeoTreeNormal',
 			'NeoTreeNormalNC',
 			'NeoTreeEndOfBuffer',
-			--Noice
+			-- Noice
 			'NoiceSplit',
 			-- Trouble
 			'TroubleNormal',
@@ -73,6 +74,8 @@ local hl_link_map = {
 	{ { 'SignColumn', 'FoldColumn', 'CursorLineSign', 'CursorLineFold' }, 'LineNr' },
 	-- NeoTree
 	{ { 'NeoTreeExpander', 'NeoTreeDirectoryIcon' }, 'Directory' },
+	-- LspKind
+	{ { 'LspKindFile' }, 'LspKindText' },
 }
 
 local function setup_hl()

@@ -58,12 +58,12 @@ local vimode_colors = {
 M.vimode = {
 	---@return string: name of current mode
 	current_color = function()
-		local c = colors.get_colors()
-		return c[vimode_colors[vim.fn.mode(1):sub(1, 1)]]
+		local C = colors.get_colors()
+		return C[vimode_colors[vim.fn.mode(1):sub(1, 1)]] or C.main_function
 	end,
 	---@return string: color of current mode
 	current_name = function()
-		return vimode_names[vim.fn.mode(1)]
+		return vimode_names[vim.fn.mode(1)] or 'N'
 	end,
 }
 
@@ -102,7 +102,7 @@ function M.filename_creator()
 		provider = function(self)
 			local filename = vim.fn.fnamemodify(self.__filename, ':t')
 			-- NOTE: For personal situations only
-			-- ::Pwsh #Zsh
+			-- ::Pwsh  #Zsh
 			local term_id = filename:match('::toggleterm::(%d+)$') or filename:match('#toggleterm#(%d+)$')
 
 			if filename == '' then

@@ -4,5 +4,6 @@ return {
 	version = '*',
 	config = function()
 		require('kaiho.plugins.toggleterm.setup')
+		require('kaiho.plugins.toggleterm.keymaps')
 	end,
 }

@@ -78,7 +78,7 @@ M.grep_entry_maker = function(opts)
 			local width = get_valid_width(0.6, 35, 50)
 			path_display = process_string(path_display, tail, width)
 			local icon, icon_hl = telescope_utils.get_devicons(tail)
-			local text = entry.text
+			local text = entry.text:match('^%s*(.-)%s*$')
 			return displayer({
 				{ icon, icon_hl },
 				tail,
@@ -108,7 +108,7 @@ M.quickfix_entry_maker = function(opts)
 			local width = get_valid_width(0.6, 40, 50)
 			path_display = process_string(path_display, tail, width)
 			local icon, icon_hl = telescope_utils.get_devicons(tail)
-			local text = entry.text
+			local text = entry.text:match('^%s*(.-)%s*$')
 			return displayer({
 				{ icon, icon_hl },
 				tail,

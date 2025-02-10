@@ -17,5 +17,6 @@ return {
 	},
 	config = function()
 		require('kaiho.plugins.telescope.setup')
+		require('kaiho.plugins.telescope.keymaps')
 	end,
 }

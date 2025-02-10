@@ -66,11 +66,6 @@
 ---| 'github_light_high_contrast'
 ---| 'github_light_colorblind'
 ---| 'github_light_tritanopia'
----@alias OdkFlavor
----| 'onedark'
----| 'onelight'
----| 'onedark_dark'
----| 'onedark_vivid'
 ---@alias NfxFlavor
 ---| 'nightfox'
 ---| 'dayfox'
@@ -86,6 +81,5 @@
 ---| TknFlavor
 ---| GhDFlavor
 ---| GhLFlavor
----| OdkFlavor
 ---| NfxFlavor
 ---| EfrFlavor

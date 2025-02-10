@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 local heirline_utils = require('heirline.utils')
 
 local icons = require('kaiho.helper.icons')
@@ -35,7 +36,7 @@ local function tabline_creator()
 		end,
 	}
 	local inactive_colors = {
-		fg = fg,
+		fg = utils.darken(fg, 0.65),
 		bg = bg,
 	}
 
@@ -96,7 +97,6 @@ local function tabline_creator()
 
 	local function pick_buffer()
 		local tabline = require('heirline').tabline
-		---@diagnostic disable-next-line: undefined-field
 		local buflist = tabline._buflist[1]
 		buflist._picker_labels = {}
 		buflist._show_picker = true
@@ -153,7 +153,7 @@ local function tabline_creator()
 			condition = function(self)
 				return not vim.api.nvim_get_option_value('modified', { buf = self.bufnr })
 			end,
-			provider = '  ',
+			provider = ' ✘ ',
 			on_click = {
 				callback = function(_, minwid)
 					vim.schedule(function()
@@ -198,7 +198,7 @@ local function tabline_creator()
 			self.winid = win
 
 			if vim.bo[bufnr].filetype == 'neo-tree' then
-				self.title = '[ Explore ]'
+				self.title = '<-- Explore -->'
 				self.hl = { fg = fg, bg = C.main_dark_bg, bold = true }
 				return true
 			end
@@ -220,7 +220,7 @@ local function tabline_creator()
 			for _, win in ipairs(wins) do
 				if is_trouble_window(win) and is_regular_window(win) and is_right_split_window(win) then
 					self.winid = win
-					self.title = '[ Outline ]'
+					self.title = '<-- Outline -->'
 					self.hl = { fg = fg, bg = C.main_dark_bg, bold = true }
 					return true
 				end
@@ -244,11 +244,11 @@ local function tabline_creator()
 			public.spacer_creator(),
 			BufferBlock,
 			hl = function(self)
-				return { fg = self.is_active and C.main_fg or fg }
+				return { fg = self.is_active and C.main_fg or inactive_colors.fg, bg = bg }
 			end,
-		}, { provider = ' ', hl = { fg = fg, bg = C.main_bg } }, {
+		}, { provider = ' ', hl = { fg = fg, bg = bg } }, {
 			provider = ' ',
-			hl = { fg = fg, bg = C.main_bg },
+			hl = { fg = fg, bg = bg },
 		}),
 		{ provider = '%=' },
 		TroubleOffset,

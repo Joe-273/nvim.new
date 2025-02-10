@@ -10,6 +10,7 @@ local lsps = {
 local formatters = {
 	'prettierd',
 	'stylua',
+	'shfmt',
 }
 local linters = {}
 

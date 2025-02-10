@@ -74,6 +74,16 @@ local function lighten(color, amount, fg)
 	return blend(color, amount, fg or '#FFFFFF')
 end
 
+local function check_filetype(filetypes)
+	filetypes = type(filetypes) == 'string' and { filetypes } or filetypes
+	for _, filetype in pairs(filetypes) do
+		if vim.bo.filetype == filetype then
+			return true
+		end
+	end
+	return false
+end
+
 return {
 	map = map,
 	group_map = group_map,

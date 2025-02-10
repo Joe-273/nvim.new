@@ -6,5 +6,6 @@ return {
 	},
 	config = function()
 		require('kaiho.plugins.noice.setup')
+		require('kaiho.plugins.noice.keymaps')
 	end,
 }

@@ -17,17 +17,11 @@ return {
 		priority = 1000,
 		name = 'theme-github',
 	},
-	nightfox = {
+	fox = {
 		'EdenEast/nightfox.nvim',
 		event = 'VeryLazy',
 		priority = 1000,
 		name = 'theme-nightfox',
-	},
-	onedarkpro = {
-		'olimorris/onedarkpro.nvim',
-		event = 'VeryLazy',
-		priority = 1000,
-		name = 'theme-onedarkpro',
 	},
 	everforest = {
 		'sainnhe/everforest',

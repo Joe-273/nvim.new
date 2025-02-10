@@ -39,4 +39,5 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.s
 	max_width = math.ceil(vim.o.columns * 0.90),
 })
 
+-- Setup lsp autocmd on lsp attach
 require('kaiho.plugins.lsp.handlers.onattach')

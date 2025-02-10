@@ -7,5 +7,6 @@ return {
 	},
 	config = function()
 		require('kaiho.plugins.ufo.setup')
+		require('kaiho.plugins.ufo.keymaps')
 	end,
 }
