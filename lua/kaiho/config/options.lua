@@ -28,7 +28,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
 -- Enable soft line wrap
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 -- Create a backup file
 vim.opt.backup = false
