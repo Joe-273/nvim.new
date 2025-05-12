@@ -24,6 +24,7 @@ require('conform').setup({
 		html = { 'prettierd' },
 		json = { 'prettierd' },
 		yaml = { 'prettierd' },
+		vue = { 'prettierd' },
 		markdown = { 'prettierd' },
 		lua = { 'stylua' },
 		zsh = { 'shfmt' },
